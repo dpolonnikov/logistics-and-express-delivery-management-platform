@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.polonnikov.smartdelivery.dto.OrderRequestDTO;
 import ru.polonnikov.smartdelivery.dto.OrderUpdateDTO;
+import ru.polonnikov.smartdelivery.exception.order.OrderNotFoundException;
 import ru.polonnikov.smartdelivery.mapper.OrderRequestMapper;
 import ru.polonnikov.smartdelivery.mapper.OrderUpdateMapper;
 import ru.polonnikov.smartdelivery.model.Order;
@@ -34,7 +35,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order getOrderByIdOrThrow(UUID orderId) {
         Order foundOrder = orderRepository.findById(orderId)
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Order with id `%s` not found".formatted(orderId)));
+                .orElseThrow(()->new OrderNotFoundException("Order with id `%s` not found".formatted(orderId)));
         return foundOrder;
     }
 
