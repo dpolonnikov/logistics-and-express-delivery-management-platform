@@ -1,5 +1,6 @@
 package ru.polonnikov.smartdelivery.service.order;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class OrderServiceImpl implements OrderService{
     private final OrderRequestMapper orderRequestMapper;
     private final OrderUpdateMapper orderUpdateMapper;
     @Override
+    @Transactional
     public Order createOrder(OrderRequestDTO order) {
         Order mappedOrder = orderRequestMapper.toOrderEntity(order);
         mappedOrder.setStatus(OrderStatus.CREATED);
@@ -37,6 +39,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    @Transactional
     public Order updateOrderByIdOrThrow(UUID orderId, OrderUpdateDTO updateOrderDTO) {
         Order orderFromDB = getOrderByIdOrThrow(orderId);
         orderUpdateMapper.updateOrder(updateOrderDTO, orderFromDB);
