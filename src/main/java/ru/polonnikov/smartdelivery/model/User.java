@@ -7,31 +7,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import ru.polonnikov.smartdelivery.utils.enums.UserRole;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
-public class Product {
+@AllArgsConstructor
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue
     private UUID id;
-    private Integer quantity;
-    private BigDecimal priceAtPurchase;
+    private String email;
+    private String password;
+    private String phone;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     @Version
     private Long version;
-    @ManyToOne
-    @JoinColumn(name = "orders_id")
-    private Order order;
 
 }

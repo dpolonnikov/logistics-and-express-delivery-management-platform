@@ -38,13 +38,13 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderResponseDTO> updateOrderById(@PathVariable("id") UUID orderId, @RequestBody OrderUpdateDTO orderUpdateDTO) {
+    public ResponseEntity<OrderResponseDTO> updateOrderById(@PathVariable("id") UUID orderId, @RequestBody @Valid  OrderUpdateDTO orderUpdateDTO) {
         var updatedOrder = orderService.updateOrderByIdOrThrow(orderId, orderUpdateDTO);
         return ResponseEntity.status(HttpStatus.OK).body(orderResponseMapper.toOrderResponseDTO(updatedOrder));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrderById(@PathVariable UUID orderId) {
+    public ResponseEntity<Void> deleteOrderById(@PathVariable("id") UUID orderId) {
         orderService.deleteOrderById(orderId);
         return ResponseEntity.noContent().build();
     }

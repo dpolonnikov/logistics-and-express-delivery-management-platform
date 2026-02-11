@@ -1,18 +1,18 @@
 package ru.polonnikov.smartdelivery.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import ru.polonnikov.smartdelivery.model.Product;
 
 import java.util.List;
 import java.util.UUID;
 
 public record OrderRequestDTO(
-        @NotEmpty
+        @NotBlank
         String address,
-        @Positive
         @NotNull
         UUID restaurantId,
         @NotEmpty
-        List<ProductRequestDTO> products
+        List<Product> products
 ) {}
