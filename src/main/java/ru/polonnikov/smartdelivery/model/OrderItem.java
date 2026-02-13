@@ -17,8 +17,8 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
-public class Product {
+@Table(name = "order_item")
+public class OrderItem {
     @Id
     @GeneratedValue
     private UUID id;
@@ -31,7 +31,7 @@ public class Product {
     @Version
     private Long version;
     @ManyToOne
-    @JoinColumn(name = "orders_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
 }

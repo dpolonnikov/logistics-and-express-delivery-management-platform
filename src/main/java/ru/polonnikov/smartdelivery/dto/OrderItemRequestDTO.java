@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Positive;
 
 import java.util.UUID;
 
-public record ProductRequestDTO(
+public record OrderItemRequestDTO(
         @NotNull
         UUID id,
         @NotNull

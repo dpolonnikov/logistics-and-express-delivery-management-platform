@@ -1,0 +1,51 @@
+- changeSet:
+    id: create-table-products-1
+    author: dmitry.polonnikov
+    comment: first liquibase migration
+    changes:
+      - createTable:
+          tableName: order_item
+          columns:
+            - column:
+                name: id
+                type: uuid
+                autoIncrement: false
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: quantity
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: priceAtPurchase
+                type: decimal(19, 2)
+                constraints:
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp with time zone
+                defaultValueComputed: CURRENT_TIMESTAMP
+                constraints:
+                  nullable: false
+            - column:
+                name: updated_at
+                type: timestamp with time zone
+                defaultValueComputed: CURRENT_TIMESTAMP
+                constraints:
+                  nullable: false
+            - column:
+                name: version
+                type: bigint
+                defaultValueNumeric: 0
+                constraints:
+                  nullable: false
+            - column:
+                name: order_id
+                type: uuid
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_order_item_orders
+                  referencedTableName: orders
+                  referencedColumnNames: id
