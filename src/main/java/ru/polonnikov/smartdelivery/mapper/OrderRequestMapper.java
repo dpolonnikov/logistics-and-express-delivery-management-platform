@@ -6,7 +6,6 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import ru.polonnikov.smartdelivery.dto.OrderRequestDTO;
 import ru.polonnikov.smartdelivery.model.Order;
-import ru.polonnikov.smartdelivery.model.Product;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface OrderRequestMapper {
@@ -16,7 +15,7 @@ public interface OrderRequestMapper {
     @AfterMapping
     default void linkProducts(@MappingTarget Order order) {
         if(order.getProducts() != null) {
-            order.getProducts().forEach(product -> product.setOrder(order));
+            order.getProducts().forEach(orderItem -> orderItem.setOrder(order));
         }
     }
 }

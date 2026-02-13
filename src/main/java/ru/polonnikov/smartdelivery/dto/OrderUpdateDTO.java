@@ -2,11 +2,10 @@ package ru.polonnikov.smartdelivery.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import ru.polonnikov.smartdelivery.model.Product;
+import ru.polonnikov.smartdelivery.model.OrderItem;
 import ru.polonnikov.smartdelivery.utils.enums.OrderStatus;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +26,7 @@ public record OrderUpdateDTO(
                 BigDecimal amount,
                 String currency,
                 OrderStatus status,
-                List<Product> products
+                List<OrderItem> orderItems
 )
  {
 }

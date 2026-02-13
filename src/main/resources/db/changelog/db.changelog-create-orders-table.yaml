@@ -1,0 +1,89 @@
+- changeSet:
+    id: create-table-orders-1
+    author: dmitry.polonnikov
+    comment: first liquibase migration
+    changes:
+      - createTable:
+          tableName: orders
+          columns:
+            - column:
+                name: id
+                type: uuid
+                autoIncrement: false
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: address
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: number
+                type: varchar(50)
+                constraints:
+                  nullable: false
+            - column:
+                name: customer_id
+                type: uuid
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: restaurant_id
+                type: uuid
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: false
+            - column:
+                name: courier_id
+                type: uuid
+                autoIncrement: false
+                constraints:
+                  primaryKey: false
+                  nullable: true
+            - column:
+                name: latitude
+                type: double
+                constraints:
+                  nullable: false
+            - column:
+                name: longitude
+                type: double
+                constraints:
+                  nullable: false
+            - column:
+                name: amount
+                type: decimal(19, 2)
+                constraints:
+                  nullable: false
+            - column:
+                name: currency
+                type: varchar(15)
+                constraints:
+                  nullable: false
+            - column:
+                name: status
+                type: varchar(30)
+                constraints:
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp with time zone
+                defaultValueComputed: CURRENT_TIMESTAMP
+                constraints:
+                  nullable: false
+            - column:
+                name: updated_at
+                type: timestamp with time zone
+                defaultValueComputed: CURRENT_TIMESTAMP
+                constraints:
+                  nullable: false
+            - column:
+                name: version
+                type: bigint
+                defaultValueNumeric: 0
+                constraints:
+                  nullable: false
